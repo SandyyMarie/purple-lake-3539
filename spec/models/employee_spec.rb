@@ -20,7 +20,7 @@ RSpec.describe Employee, type: :model do
   end  
 
   it '#open_tickets' do
-    expect(@employee_1.open_tickets).to eq([@ticket_1, @ticket_2])
+    expect(@employee_1.open_tickets).to eq([@ticket_2, @ticket_1])
     expect(@employee_2.open_tickets).to eq(@ticket_3)
   end
 end

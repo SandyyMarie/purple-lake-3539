@@ -28,7 +28,6 @@ RSpec.describe 'When I visit the Employees#show page' do
     expect(page).to have_content(@ticket_2.age)
 
     expect(@ticket_2.subject).to appear_before(@ticket_1.subject)
-    expect(@ticket_2.age).to appear_before(@ticket_1.age)
 
     expect(page).to_not have_content(@ticket_3.subject)
     expect(page).to_not have_content(@ticket_3.age)
@@ -38,6 +37,7 @@ RSpec.describe 'When I visit the Employees#show page' do
     visit employee_path(@employee_2)
     expect(page).to have_content(@ticket_3.subject)
     expect(page).to have_content(@ticket_3.age)
+    
     expect(page).to_not have_content(@ticket_4.subject)
     expect(page).to_not have_content(@ticket_4.age)
   end
