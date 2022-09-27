@@ -5,9 +5,9 @@ RSpec.describe 'When I visit the Departments#index page' do
     @dept_1 = Department.create!(name: "IT", floor: "Basement")
     @dept_2 = Department.create!(name: "HR", floor: "1st Floor")
 
-    @employee_1 = @dept_1.employees.create!(name: "Sandy M", integer: 3)
-    @employee_2 = @dept_1.employees.create!(name: "Bryan L", integer: 3)
-    @employee_3 = @dept_2.employees.create!(name: "Miranda S", integer: 4)
+    @employee_1 = @dept_1.employees.create!(name: "Sandy M", level: 3)
+    @employee_2 = @dept_1.employees.create!(name: "Bryan L", level: 3)
+    @employee_3 = @dept_2.employees.create!(name: "Miranda S", level: 4)
 
   end
 
@@ -20,7 +20,7 @@ RSpec.describe 'When I visit the Departments#index page' do
 # And underneath each department, I can see the names of all of its employees
 
   it 'shows each departments name and floor, along with a list of each depts employees (US#1)' do
-    visit department_path #update once routes are made
+    visit departments_path #update once routes are made
     expect(page).to have_content(@dept_1.name)
     expect(page).to have_content(@dept_1.floor)
 
