@@ -55,15 +55,14 @@ RSpec.describe 'When I visit the Employees#show page' do
 # and I see the ticket's subject now listed
 # (you do not have to test for sad path, for example if the id does not match an existing ticket)
 
-  it 'if i do not see any open tickets i instead see a form to add a ticket to this employee, when form is filled out and submitted you return to #show page to see listed ticket' do
+  it 'if i do not see any open tickets i instead see a form to add a ticket to this employee, when form is filled out and submitted you return to #show page to see listed ticket (US#3)' do
     visit employee_path(@employee_3)
 
     expect(page).to_not have_content("Current Open Tickets:")
-
     fill_in "Ticket Subject:", with: "Computer making clunking noises"
     click_button('Submit')
 
-    expect(current_path).to eq(visit employee_path(@employee_3))
+    expect(current_path).to eq(employee_path(@employee_3))
     expect(page).to have_content("Current Open Tickets:")
   end
 end
