@@ -21,14 +21,17 @@ RSpec.describe 'When I visit the Departments#index page' do
 
   it 'shows each departments name and floor, along with a list of each depts employees (US#1)' do
     visit departments_path #update once routes are made
-    expect(page).to have_content(@dept_1.name)
-    expect(page).to have_content(@dept_1.floor)
+    within("#dept-#{@dept_1.id}") do
+      expect(page).to have_content(@dept_1.name)
+      expect(page).to have_content(@dept_1.floor)
+      expect(page).to have_content(@employee_1.name)
+      expect(page).to have_content(@employee_2.name)
+    end
+    within("#dept-#{@dept_2.id}") do
+      expect(page).to have_content(@dept_2.name)
+      expect(page).to have_content(@dept_2.floor)
+      expect(page).to have_content(@employee_3.name)
+    end
 
-    expect(page).to have_content(@dept_2.name)
-    expect(page).to have_content(@dept_2.floor)
-
-    expect(page).to have_content(@employee_1.name)
-    expect(page).to have_content(@employee_2.name)
-    expect(page).to have_content(@employee_3.name)
   end
 end
