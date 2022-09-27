@@ -1,11 +1,6 @@
 <h1><%= @employee.name %> info</h1>
 <h2>Department: <%= @employee.department.name %></h2>
-<% if @employee.open_tickets == [] %>
-  <%= form_with model: [@employee, @tickets], local: true do |f| %>
-  <%= f.label :subject, "Ticket Subject:" %>
-  <%= f.submit "Submit" %>
-  <% end %>
-<% else %>
+<% if @employee.open_tickets != [] %>
   <h3>Current Open Tickets:</h3>
   <ol>
   <% @employee.open_tickets.each do |ticket| %>
@@ -14,4 +9,11 @@
   Age of ticket: <%= ticket.age %></li>
   <% end %>
   </ol>
+<% else %>
+  <h3>Create new Ticket:</h3>
+  <%= form_with url: employee_employee_tickets_path(@employee), method: :post, local: true do |f| %>
+  <%= f.label :ticket_id, "Ticket ID:" %>
+  <%= f.number_field :ticket_id %>
+  <%= f.submit "Submit" %>
+  <% end %>
 <% end %>

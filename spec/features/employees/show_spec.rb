@@ -48,21 +48,21 @@ RSpec.describe 'When I visit the Employees#show page' do
 # As a user,
 # When I visit the employee show page,
 # I do not see any open tickets listed that are not assigned to the employee
+
 # and I see a form to add a ticket to this employee
 # When I fill in the form with the id of an open ticket that already exists in the database
 # and I click submit
+
 # Then I am redirected back to that employee's show page
 # and I see the ticket's subject now listed
 # (you do not have to test for sad path, for example if the id does not match an existing ticket)
 
   it 'if i do not see any open tickets i instead see a form to add a ticket to this employee, when form is filled out and submitted you return to #show page to see listed ticket (US#3)' do
     visit employee_path(@employee_3)
-
-    expect(page).to_not have_content("Current Open Tickets:")
-    fill_in "Ticket Subject:", with: "Computer making clunking noises"
+    expect(page).to_not have_content(@ticket_1.subject)
+    fill_in "Ticket ID:", with: @ticket_1.id
     click_button('Submit')
-
     expect(current_path).to eq(employee_path(@employee_3))
-    expect(page).to have_content("Current Open Tickets:")
+    expect(page).to have_content(@ticket_1.subject)
   end
 end
